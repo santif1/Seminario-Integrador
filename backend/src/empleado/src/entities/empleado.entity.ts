@@ -22,4 +22,5 @@ export class Empleado {
     @ManyToOne(() => RoleEntity, role => role.empleados, { eager: true })
     @JoinColumn({ name: 'rol_id' })
     rol: RoleEntity;
+    
 }
