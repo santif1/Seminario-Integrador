@@ -1,5 +1,5 @@
 export interface UserI {
-  email: string;
+  nombre: string;
   password: string;
   permissionCodes: string[];
 }

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { AppController } from '../app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { entities } from './entities';
 import { AuthGuard } from './middlewares/auth.middleware';
