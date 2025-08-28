@@ -11,6 +11,8 @@ import { MiddlewaresModule } from './middlewares/middleware.module';
 import { JwtModule } from './jwt/jwt.module';
 import { SeedService } from './users/seed.service';
 import { JwtService } from './jwt/jwt.service';*/
+import { EmpleadoController } from './controller/empleado.controller';
+import { EmpleadoService } from './service/empleado.service';
 
 
 @Module({
@@ -18,12 +20,12 @@ import { JwtService } from './jwt/jwt.service';*/
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: '127.0.0.1',
-      port: 5432,
+      port: 5434,
       database: 'empleados',
       username: 'postgres',
       password: 'postgres',
-      synchronize: true,
-      dropSchema: true,
+      synchronize: false,
+      dropSchema: false,
       entities,
     }),
     TypeOrmModule.forFeature(entities),
@@ -34,9 +36,9 @@ import { JwtService } from './jwt/jwt.service';*/
     JwtModule,
 */
   ],
-  controllers: [AppController, /*UsersController*/],
+  controllers: [EmpleadoController, /*UsersController*/],
   providers: [
     /*SeedService, JwtService*/
-  ]
+  EmpleadoService]
 })
 export class EmpleadoModule {}

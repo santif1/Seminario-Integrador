@@ -20,12 +20,12 @@ import { JwtService } from './jwt/jwt.service';*/
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: '127.0.0.1',
-      port: 5432,
+      port: 5434,
       database: 'stocks',
       username: 'postgres',
       password: 'postgres',
-      synchronize: true,
-      dropSchema: true,
+      synchronize: false,
+      dropSchema: false,
       entities,
     }),
     TypeOrmModule.forFeature(entities),
@@ -36,9 +36,9 @@ import { JwtService } from './jwt/jwt.service';*/
     JwtModule,
 */
   ],
-  controllers: [AppController, /*UsersController*/],
+  controllers: [StockController, /*UsersController*/],
   providers: [
-    /*SeedService, JwtService*/
+    StockService/*SeedService, JwtService*/
   ]
 })
 export class StockModule {}
