@@ -3,7 +3,7 @@ import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGenera
 import { RoleEntity } from './roles.entity';
 
 @Entity('empleados')
-export class Empleado {
+export class EmpleadoEntity /* implements UserI */ {
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -1,5 +1,5 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Empleado } from './empleado.entity';
+import { EmpleadoEntity } from './empleado.entity';
 import { PermissionEntity } from './permissions.entity';
 
 @Entity('roles')
@@ -13,10 +13,10 @@ export class RoleEntity {
     @Column() 
     descripcion: string;
 
-    @OneToMany(() => Empleado, empleado => empleado.rol)
-    empleados: Empleado[];
+    @OneToMany(() => EmpleadoEntity, empleado => empleado.rol)
+    empleados: EmpleadoEntity[];
 
     @ManyToMany(()=> PermissionEntity, permission => permission.roles, { eager: true })
     @JoinTable({ name: 'roles_permissions' })
     permissions: PermissionEntity[];
-}
+}   
