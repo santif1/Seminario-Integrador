@@ -1,6 +1,7 @@
 /*import { EmpleadoI } from '../interfaces/empleado.interface';*/
-import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { RoleEntity } from './roles.entity';
+import { VentaEntity } from '../../ventas/entities/venta.entity'
 
 @Entity('empleados')
 export class EmpleadoEntity /* implements EmpleadoI */ {
@@ -22,5 +23,7 @@ export class EmpleadoEntity /* implements EmpleadoI */ {
     @ManyToOne(() => RoleEntity, role => role.empleados, { eager: true })
     @JoinColumn({ name: 'rol_id' })
     rol: RoleEntity;
-    
+
+    @OneToMany(()=> VentaEntity, ventas => ventas.empleado)
+    ventas: VentaEntity[];
 }
