@@ -5,5 +5,5 @@ export class TalleEntity{
     codigo: number;
 
     @Column()
-    descripcion: string;
+    nombre: string;
 }

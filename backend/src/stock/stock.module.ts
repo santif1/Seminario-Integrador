@@ -21,7 +21,7 @@ import { JwtService } from './jwt/jwt.service';*/
       type: 'postgres',
       host: '127.0.0.1',
       port: 5434,
-      database: 'stocks',
+      database: 'stock',
       username: 'postgres',
       password: 'postgres',
       synchronize: false,
