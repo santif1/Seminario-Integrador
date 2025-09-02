@@ -14,14 +14,14 @@ export class EmpleadoService {
 
   async findAll(): Promise<EmpleadoEntity[]> {
     return await this.empleadoRepository.find({
-      relations: ['rol']
+      relations: ['rol', 'ventas']
     });
   }
 
   async findOne(id: number): Promise<EmpleadoEntity> {
     const empleado = await this.empleadoRepository.findOne({
       where: { id },
-      relations: ['rol']
+      relations: ['rol', 'ventas']
     });
 
     if (!empleado) {
@@ -34,7 +34,7 @@ export class EmpleadoService {
   async findByLegajo(legajo: string): Promise<EmpleadoEntity> {
     const empleado = await this.empleadoRepository.findOne({
       where: { legajo },
-      relations: ['rol']
+      relations: ['rol', 'ventas']
     });
 
     if (!empleado) {
@@ -92,7 +92,7 @@ export class EmpleadoService {
   async findByRole(roleId: number): Promise<EmpleadoEntity[]> {
     return await this.empleadoRepository.find({
       where: { rol: { id: roleId } },
-      relations: ['rol']
+      relations: ['rol', 'ventas']
     });
   }
 
@@ -100,6 +100,7 @@ export class EmpleadoService {
     return await this.empleadoRepository
       .createQueryBuilder('empleado')
       .leftJoinAndSelect('empleado.rol', 'rol')
+      .leftJoinAndSelect('empleado.ventas', 'ventas')
       .where('empleado.nombre ILIKE :search OR empleado.apellido ILIKE :search', {
         search: `%${searchTerm}%`
       })
@@ -108,5 +109,41 @@ export class EmpleadoService {
 
   async count(): Promise<number> {
     return await this.empleadoRepository.count();
+  }
+
+  // Métodos específicos para ventas
+  async findWithVentas(id: number): Promise<EmpleadoEntity> {
+    const empleado = await this.empleadoRepository.findOne({
+      where: { id },
+      relations: ['rol', 'ventas']
+    });
+
+    if (!empleado) {
+      throw new NotFoundException(`Empleado con ID ${id} no encontrado`);
+    }
+
+    return empleado;
+  }
+
+  async getVentasCount(id: number): Promise<number> {
+    const empleado = await this.empleadoRepository.findOne({
+      where: { id },
+      relations: ['ventas']
+    });
+
+    if (!empleado) {
+      throw new NotFoundException(`Empleado con ID ${id} no encontrado`);
+    }
+
+    return empleado.ventas.length;
+  }
+
+  async findWithoutVentas(): Promise<EmpleadoEntity[]> {
+    return await this.empleadoRepository
+      .createQueryBuilder('empleado')
+      .leftJoinAndSelect('empleado.rol', 'rol')
+      .leftJoin('empleado.ventas', 'ventas')
+      .where('ventas.id IS NULL')
+      .getMany();
   }
 }
