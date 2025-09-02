@@ -1,9 +1,9 @@
-import { UserI } from '../interfaces/user.interface';
+/*import { EmpleadoI } from '../interfaces/empleado.interface';*/
 import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { RoleEntity } from './roles.entity';
 
 @Entity('empleados')
-export class EmpleadoEntity /* implements UserI */ {
+export class EmpleadoEntity /* implements EmpleadoI */ {
     @PrimaryGeneratedColumn()
     id: number;
 
