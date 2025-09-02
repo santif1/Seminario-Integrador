@@ -10,4 +10,8 @@ export class VentasService {
     async findOne(id: number){
         return "venta con id: " + id;
     }
+
+    async create(){
+        
+    }
 }
