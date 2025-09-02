@@ -24,7 +24,7 @@ import { EmpleadoService } from './service/empleado.service';
       database: 'empleados',
       username: 'postgres',
       password: 'postgres',
-      synchronize: false,
+      synchronize: true,
       dropSchema: false,
       entities,
     }),

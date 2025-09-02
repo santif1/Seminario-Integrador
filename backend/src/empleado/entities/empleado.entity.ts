@@ -1,10 +1,10 @@
-import { UserI } from '../interfaces/user.interface';
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+/*import { EmpleadoI } from '../interfaces/empleado.interface';*/
+import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { RoleEntity } from './roles.entity';
 import { VentaEntity } from '../../ventas/entities/venta.entity'
 
 @Entity('empleados')
-export class EmpleadoEntity /* implements UserI */ {
+export class EmpleadoEntity /* implements EmpleadoI */ {
     @PrimaryGeneratedColumn()
     id: number;
 
