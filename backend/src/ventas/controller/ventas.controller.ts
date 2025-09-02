@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Put, Patch, Delete, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Patch, Delete, Param, Body } from '@nestjs/common';
 import { VentasService } from '../service/ventas.service';
+import { VentasDto } from '../interfaces/ventasDto';
 
 @Controller('ventas')
 export class VentasController {
@@ -18,4 +19,9 @@ export class VentasController {
         return this.ventasService.findOne(id);
     }
 
+    @Post()
+    create(@Body() dto: VentasDto){
+        this.ventasService.create(dto);
+
+    }
 }

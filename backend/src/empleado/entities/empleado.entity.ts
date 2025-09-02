@@ -1,6 +1,7 @@
 import { UserI } from '../interfaces/user.interface';
-import { BaseEntity, Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { RoleEntity } from './roles.entity';
+import { VentaEntity } from '../../ventas/entities/venta.entity'
 
 @Entity('empleados')
 export class EmpleadoEntity /* implements UserI */ {
@@ -22,5 +23,7 @@ export class EmpleadoEntity /* implements UserI */ {
     @ManyToOne(() => RoleEntity, role => role.empleados, { eager: true })
     @JoinColumn({ name: 'rol_id' })
     rol: RoleEntity;
-    
+
+    @OneToMany(()=> VentaEntity, ventas => ventas.empleado)
+    ventas: VentaEntity[];
 }
