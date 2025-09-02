@@ -1,5 +1,6 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn  } from "typeorm";
 import { TalleEntity } from "./talle.entity";
+import { DetalleVentaEntity } from "src/ventas/entities/detalle.venta.entity";
 
 @Entity('prendas')
 export class PrendaEntity {
@@ -22,4 +23,6 @@ export class PrendaEntity {
     @JoinColumn({ name: 'talle_id' })
     talle: TalleEntity;
 
+    @ManyToOne(()=> DetalleVentaEntity, detalle => detalle.prenda)
+    ventas: DetalleVentaEntity;
 }

@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { VentaEntity } from './venta.entity';
+import { PrendaEntity } from 'src/stock/entities/prenda.entity';
 
 @Entity()
 export class DetalleVentaEntity{
@@ -18,5 +19,6 @@ export class DetalleVentaEntity{
     @Column()
     subtotal: number;
 
-    @OneToMany(()=> PrendaEntity, prenda => prenda.ventas)
+    @ManyToOne(()=> PrendaEntity, prenda => prenda.ventas)
+    prenda: PrendaEntity;
 }
