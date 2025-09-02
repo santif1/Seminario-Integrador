@@ -4,10 +4,7 @@ import { TalleEntity } from "./talle.entity";
 @Entity('prendas')
 export class PrendaEntity {
     @PrimaryColumn()
-    codigo : number;
-
-    @Column()
-    tipo: string;
+    codigo : string;
 
     @Column()
     descripcion: string;
