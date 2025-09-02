@@ -75,17 +75,29 @@ export class EmpleadoController {
     return await this.empleadoService.remove(id);
   }
 
-  // Endpoint para dashboard - se puedes expandir
+  // Endpoint para dashboard - puedes expandir según necesites
   @Get(':id/dashboard')
   async getDashboard(@Param('id', ParseIntPipe) id: number): Promise<any> {
-    const empleado = await this.empleadoService.findOne(id);
+    const empleado = await this.empleadoService.findWithVentas(id);
+    const ventasCount = await this.empleadoService.getVentasCount(id);
     
-    // Aca hay que agregar lógica para obtener datos del dashboard
-    // como ventas del empleado, estadísticas, etc.
     return {
       empleado,
-      // estadisticas: await this.getEmpleadoStats(id),
-      // ventasRecientes: await this.getVentasRecientes(id),
+      estadisticas: {
+        totalVentas: ventasCount,
+        // Aquí puedes agregar más estadísticas
+      }
     };
+  }
+
+  @Get('sin-ventas')
+  async findWithoutVentas(): Promise<EmpleadoEntity[]> {
+    return await this.empleadoService.findWithoutVentas();
+  }
+
+  @Get(':id/ventas-count')
+  async getVentasCount(@Param('id', ParseIntPipe) id: number): Promise<{ totalVentas: number }> {
+    const total = await this.empleadoService.getVentasCount(id);
+    return { totalVentas: total };
   }
 }
