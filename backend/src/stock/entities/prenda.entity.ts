@@ -5,10 +5,7 @@ import { DetalleVentaEntity } from "src/ventas/entities/detalle.venta.entity";
 @Entity('prendas')
 export class PrendaEntity {
     @PrimaryColumn()
-    codigo : number;
-
-    @Column()
-    tipo: string;
+    codigo : string;
 
     @Column()
     descripcion: string;

@@ -23,4 +23,9 @@ export class VentasController {
     create(){
         this.ventasService.create();
     }
+    //@Post()
+    //create(@Body() dto: VentasDto){
+    //    this.ventasService.create(dto);
+    //
+    //}
 }
