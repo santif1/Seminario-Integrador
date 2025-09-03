@@ -19,9 +19,9 @@ export class VentasController {
         return this.ventasService.findOne(id);
     }
 
-    @Post()
-    create(@Body() dto: VentasDto){
-        this.ventasService.create(dto);
-
-    }
+    //@Post()
+    //create(@Body() dto: VentasDto){
+    //    this.ventasService.create(dto);
+    //
+    //}
 }
