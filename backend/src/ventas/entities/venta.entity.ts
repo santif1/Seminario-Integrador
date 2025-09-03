@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
-import { EmpleadoEntity } from '../../empleado/entities/empleado.entity';
 import { DetalleVentaEntity } from './detalle.venta.entity';
 import { ClienteEntity } from './cliente.entity';
 
@@ -15,8 +14,8 @@ export class VentaEntity {
     @Column()
     total: number;
 
-    @ManyToOne(()=> EmpleadoEntity, empleado => empleado.ventas)
-    empleado: EmpleadoEntity;
+    @Column()
+    empleadoId: number;
 
     @OneToMany(() => DetalleVentaEntity, detalle => detalle.venta, {
         cascade: true,

@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Patch, Delete, Param, Body } from '@nestjs/common';
 import { VentasService } from '../service/ventas.service';
-import { VentasDto } from '../interfaces/ventasDto';
+
 
 @Controller('ventas')
 export class VentasController {
@@ -20,8 +20,7 @@ export class VentasController {
     }
 
     @Post()
-    create(@Body() dto: VentasDto){
-        this.ventasService.create(dto);
-
+    create(){
+        this.ventasService.create();
     }
 }

@@ -12,6 +12,6 @@ export class VentasService {
     }
 
     async create(){
-        
+        return null;
     }
 }
